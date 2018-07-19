@@ -37,6 +37,7 @@ public  class Player : MonoBehaviour {
 [Unity Documentation - Input.acceleration][link]
 
 [link]: https://docs.unity3d.com/ScriptReference/Input-acceleration.html
+
 ---
 
 
