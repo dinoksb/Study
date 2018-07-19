@@ -6,6 +6,7 @@ using Vuforia;
 public class ScreenShot : MonoBehaviour
 {
     //public GameObject SaveForScreenshot;
+    private Coroutine coAndroidScreenshot; 
 
     private void Awake()
     {
@@ -19,32 +20,34 @@ public class ScreenShot : MonoBehaviour
 
     private void Shot()
     {
-        StartCoroutine(AndroidScreenshot());
-        //if (Application.platform == RuntimePlatform.Android)
-        //{
-        //    StartCoroutine(AndroidScreenshot());
-        //}
-        //else
-        //{
-        //    string date = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-        //    string myFilename = "myScreenshot_" + date + ".png";
-        //    string myFolderLocation = Application.persistentDataPath;
-        //    string myScreenshotLocation = myFolderLocation + myFilename;
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            if(coAndroidScreenshot == null)
+            {
+                coAndroidScreenshot = StartCoroutine(AndroidScreenshot());
+            }
+        }
+        else
+        {
+            string date = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+            string myFilename = "myScreenshot_" + date + ".png";
+            string myFolderLocation = Application.persistentDataPath;
+            string myScreenshotLocation = myFolderLocation + myFilename;
 
-        //    if (!System.IO.Directory.Exists(myFolderLocation))
-        //    {
-        //        System.IO.Directory.CreateDirectory(myFolderLocation);
-        //    }
+            if (!System.IO.Directory.Exists(myFolderLocation))
+            {
+                System.IO.Directory.CreateDirectory(myFolderLocation);
+            }
 
-        //    Application.CaptureScreenshot(myScreenshotLocation);
-        //    Debug.Log(Application.persistentDataPath);
-        //}
+            Application.CaptureScreenshot(myScreenshotLocation);
+            Debug.Log(Application.persistentDataPath);
+        }
 
     }
 
     private IEnumerator AndroidScreenshot()
     {
-        // 한프레임이 끝날때까지 대기, 운이 나쁠경우 다 출력 되지 않은 상태의 화면이 출력될 수 있음.
+        // 한프레임이 끝날때까지 대기.
         yield return new WaitForEndOfFrame();
 
         // 저장할 경로를 설정
@@ -96,6 +99,8 @@ public class ScreenShot : MonoBehaviour
         // 저장한 이미지를 갤러리에 보이게 하기 위해 안드로이드 갤러리를 갱신해준다.
         AndroidAPICall(myScreenshotLocation);
 
+        coAndroidScreenshot = null;
+
         yield return null;
     }
     private void AndroidAPICall(string path)
@@ -112,13 +117,4 @@ public class ScreenShot : MonoBehaviour
 
         objActivity.Call("sendBroadcast", objIntent);
     }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.V))
-        {
-            Camera.main.targetTexture = null;
-        }
-    }
-
 }
