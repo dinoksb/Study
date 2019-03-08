@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 
-namespace Hecomi.HoloLensPlayground
-{
-
 public class BodyLocked : MonoBehaviour 
 {
     #region(Parameters)
@@ -152,6 +149,4 @@ public class BodyLocked : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation_, 1f - rotationSmoothness);
         transform.localScale = initScale_ * (1f - minScaleRatio * (1f - Mathf.Clamp(scaleFactor, 0f, 1f)));
     }
-}
-
 }
