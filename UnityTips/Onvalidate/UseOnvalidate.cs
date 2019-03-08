@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class UseOnvalidate : MonoBehaviour
 {
+    public int TestInt = 0;
+
     private void FixedUpdate()
     {
-        public int TestInt = 0;
-
         #if UNITY_EDITOR
         private void OnValidate()
         {
