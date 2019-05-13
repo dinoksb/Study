@@ -8,3 +8,7 @@
 
 GameObject.Find(); > GameObject.FindGameObjectWithTag(); >
 GameObject.FindObjectOfType<T>();
+
+[Finding Objects in Unity3D – Misconceptions and Recommendations(unity3d.college)][link]
+
+[link]:https://unity3d.college/2018/09/04/finding-objects-unity3d-misconceptions-recommendations/
