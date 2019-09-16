@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Easy Indicators/Demos/Demo4 - Runtime Demo.unity
+  isLoaded: 1
+  isActive: 1
