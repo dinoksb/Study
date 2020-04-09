@@ -33,7 +33,6 @@ namespace Assets.Editor
             {
                 PlayerSettings.SetScriptingDefineSymbolsForGroup(target, symbols);
             }
-
         }
 
 

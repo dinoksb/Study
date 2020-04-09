@@ -17,7 +17,7 @@ namespace Assets.Editor
             get { return String.Join(";", currentSymbols.ToArray()); }
         }
 
-        static DefineSymbol()
+        static SymbolCustom()
         {
             currentSymbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup).Split(';');
         }
